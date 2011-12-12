@@ -1,0 +1,74 @@
+body
+{
+    background: url('../common/background.png') repeat-x scroll top;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+div#body
+{
+    background-color: white;
+    margin: auto;
+    text-align: left;
+//    border: 1px solid #999999;
+    margin-bottom: 20px;
+    width: 910px;
+}
+
+div#title
+{
+    font-size: 25px;
+    font-weight: bold;
+    font-variant: small-caps;
+    text-align: center;
+    color: #095BA5;
+    background: url('../common/logo.jpg') no-repeat scroll 10px 10px;
+    background-color: white;
+    line-height: 90px;
+}
+
+div#banner
+{
+    background: url("../common/banner2.jpg");
+    height: 132px;
+    margin-bottom: 20px;
+}
+
+p
+{
+    text-align: justify;
+}
+
+li
+{
+    text-align: justify;
+/*
+	  margin-top: 8px;
+	  margin-bottom: 8px;
+*/
+}
+
+h2
+{
+    font-weight: bold;
+	  margin-left: 0px;
+}
+
+h3
+{
+	  margin-left: 10px;
+}
+
+a.anchor, a.anchor:visited {
+	color: #153788;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a.anchor:hover {
+	font-weight: bold;
+	text-decoration: none; 	
+	background-color: #f2f2ff 
+}
+

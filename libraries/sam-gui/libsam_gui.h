@@ -1,0 +1,30 @@
+#ifndef _SAM_GUI_
+#define _SAM_GUI_
+
+#include "source\common\sam_gui_bitmap_raw.h"
+#include "source\common\sam_gui_color.h"
+#include "source\common\sam_gui_colors.h"
+#include "source\common\sam_gui_errors.h"
+#include "source\common\sam_gui_font.h"
+#include "source\common\sam_gui_font10x14.h"
+//#include "source\common\sam_gui_point.h"
+//#include "source\common\sam_gui_size.h"
+#include "source\disp\disp_core.h"
+#include "source\disp\disp_backend.h"
+#include "source\disp\backends\HX8347\backend_HX8347.h"
+#include "source\disp\backends\ILI9325\backend_ILI9325.h"
+#include "source\file\file_fs.h"
+#include "source\porting\sam_gui_porting.h"
+#include "source\wgt\core\wgt_core.h"
+#include "source\wgt\core\wgt_core_behaviour.h"
+#include "source\wgt\core\wgt_core_message.h"
+//#include "source\wgt\core\wgt_core_pointer.h"
+#include "source\wgt\core\wgt_core_screen.h"
+//#include "source\wgt\core\wgt_core_timer.h"
+#include "source\wgt\core\wgt_core_widget.h"
+#include "source\wgt\core\wgt_core_frontend.h"
+#include "source\wgt\widgets\wgt_widget_button.h"
+#include "source\wgt\widgets\wgt_widget_page.h"
+#include "source\wgt\widgets\wgt_widget_static.h"
+
+#endif // _SAM_GUI_

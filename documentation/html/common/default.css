@@ -1,0 +1,1291 @@
+/*
+ ----------------------------------------------------------------->
+  General tags
+ ----------------------------------------------------------------->
+*/
+
+HTML
+{
+}
+
+BODY
+{
+	background: url('background.png') repeat-x scroll top;
+	font-family: Arial, Tahoma;
+	font-size: 12px;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+DIV#BODY
+{
+    margin: auto;
+    width: 910px;
+    border: 1px solid #999999;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+TD
+{
+	font-family: Arial, Tahoma;
+	font-size: 12px;
+	font-weight:normal;
+	text-decoration: none;
+	color: #000;
+}
+
+LI
+{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+/*
+ ----------------------------------------------------------------->
+  Content link
+ ----------------------------------------------------------------->
+*/
+
+A
+{
+	font-size: 12px;
+	font-weight:bold;
+	text-decoration: none;
+	color: #0066D9;
+}
+
+A:active
+{
+	font-weight:bold;
+	text-decoration: none;
+	color: #0066D9;
+}
+
+A:link
+{
+	font-weight:bold;
+	text-decoration: none;
+	color: #0066D9;
+}
+
+A:visited
+{
+}
+
+A:hover
+{
+	font-weight:bold;
+	text-decoration: underline;
+	color: black;
+}
+
+/*
+ ----------------------------------------------------------------->
+  Tabs
+ ----------------------------------------------------------------->
+*/
+
+/*-----------------------
+  Stuff for the tabs
+-----------------------*/
+
+/* Custom search tab */
+.tabSearch
+{
+    line-height: 15px;
+    position: relative;
+    z-index: 1;
+    top: 85px;
+    left: 400px;
+
+    background-color: #F9F9F9;
+    border: 1px solid #CCCCCC;
+    border-bottom-style: none;
+    padding: 5px 10px;
+
+}
+
+/* When the Tabs are active */
+.tabActive
+{
+    display: none;
+	padding-left: 4px;
+	padding-right: 4px;
+	margin-right: 2px;
+
+	background-color: #E1EDC5;
+}
+
+/* When the Tabs are inactive */
+.tabInActive
+{
+    display: none;
+
+	padding-left: 4px;
+	padding-right: 4px;
+	margin-right: 2px;
+
+	background-color: #EBEBEB;
+}
+
+/* When the Tabs are active and no content on*/
+.tabActiveGrayout
+{
+	border-style:solid;
+	border-width:1px;
+	border-color:#aaa;
+
+	border-bottom-style:none;
+	border-bottom-width:0px;
+
+	padding-left:4px;
+	padding-right:4px;
+
+	margin-right:2px;
+
+	background-color:#acd;
+}
+
+/* When the Tabs are inactive and no content on*/
+.tabInActiveGrayout
+{
+    display: none;
+}
+
+/* Hmmm! Hack for getting IE and Opera to show the upper border of the tabs */
+TD.tabFix
+{
+    height: 15px;
+}
+
+/*-----------------
+  Link for the tabs
+-----------------*/
+
+.tabLinkActive
+{
+    display: none;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #000;
+}
+
+A.tabLinkActive:visited
+{
+	font-weight:bold;
+	text-decoration: none;
+	color: #000;
+}
+
+A.tabLinkActive:hover
+{
+	font-weight:bold;
+	text-decoration: none;
+	color: #000;
+}
+
+
+A.tabLinkInActive
+{
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #666666;
+    display: none;
+}
+
+.tabLinkGrayout
+{
+	font-size: 12px;
+	font-weight:bold;
+	text-decoration: none;
+	color: #aaa;
+}
+
+/*
+ ----------------------------------------------------------------->
+  Path
+ ----------------------------------------------------------------->
+*/
+
+/*-----------------
+  Link for the path
+-----------------*/
+
+A.pathLink
+{
+	font-size: 10px;
+	font-weight: bold;
+	text-decoration: underline;
+	color: #0066CC;
+}
+
+A.pathLink:visited
+{
+}
+
+A.pathLink:hover
+{
+	color: black;
+}
+
+/*-----------------
+  Non Link for the path
+-----------------*/
+
+.pathNonLink
+{
+	font-size: 10px;
+	font-weight:normal;
+	text-decoration: none;
+	color: #000;
+}
+
+/*-----------------
+  Position and stuff for the path
+-----------------*/
+
+/* Path through site */
+.path
+{
+    padding: 2px 10px;
+    padding-top: 134px;
+    background: url('banner2.jpg') no-repeat scroll top;
+    background-color: white;
+}
+
+.path-arrow
+{
+	margin-left:4px;
+	margin-right:4px;
+}
+
+/*
+ ----------------------------------------------------------------->
+  Show/Hide Other doxygen Links
+  Link for the Show/Hide Other Links
+ ----------------------------------------------------------------->
+*/
+
+/*------------------------------------
+  Links for other doxygen Links
+------------------------------------*/
+
+A.showHideOtherLinks
+{
+	font-size: 12px;
+	font-weight:bold;
+	text-decoration: none;
+	color: #000;
+}
+
+A.showHideOtherLinks:visited
+{
+	font-weight:bold;
+	text-decoration: none;
+	color: #000;
+}
+
+A.showHideOtherLinks:hover
+{
+	font-weight:bold;
+	text-decoration: none;
+	color: #000;
+}
+
+
+A.otherLinks
+{
+	font-size: 12px;
+	font-weight:normal;
+	text-decoration: none;
+	color: #000;
+}
+
+A.otherLinks:visited
+{
+	font-weight:normal;
+	text-decoration: none;
+	color: #000;
+}
+
+A.otherLinks:hover
+{
+	font-weight:normal;
+	text-decoration: underline;
+	color: #045;
+}
+
+/*------------------------------------
+  Stuff for the Other doxygen Links
+------------------------------------*/
+
+.otherLinksSeparatorPadding
+{
+	padding-left:4px;
+	padding-right:4px;
+}
+
+/*
+ ----------------------------------------------------------------->
+  
+ LeftMenu (the navigation menu)
+ ----------------------------------------------------------------->
+*/
+
+/*---------------------
+  Link for the leftMenu
+---------------------*/
+
+.leftMenuLinkHeadActive
+{
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
+    padding-left: 7px;
+    display: block;
+}
+
+A.leftMenuLinkHeadInActive
+{
+	font-size: 12px;
+	font-weight: normal;
+	text-decoration: none;
+	color: #095BA5;
+    padding-left: 7px;
+    background: url('back-arrow.gif') no-repeat scroll left;
+    display: block;
+}
+
+A.leftMenuLinkHeadInActive:hover
+{
+	text-decoration: underline;
+	color: black;
+}
+
+.leftMenuLinkActive
+{
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	color: white;
+
+    background-color: #666666;
+    padding: 5px;
+    display: block;
+}
+
+A.leftMenuLinkActive:visited
+{
+	font-weight:normal;
+	text-decoration: none;
+	color: #000;
+}
+
+A.leftMenuLinkActive:hover
+{
+	font-weight:normal;
+	text-decoration: underline;
+	color: #045;
+}
+
+A.leftMenuLinkInActive
+{
+	font-size: 12px;
+	font-weight:normal;
+	text-decoration: none;
+	color: white;
+
+    overflow: hidden;
+    background-color: #999999;
+    padding: 5px;
+    max-width: 200px;
+    display: block;
+}
+
+A.leftMenuLinkInActive:hover
+{
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	color: white;
+
+    background-color: #666666;
+    padding: 5px;
+    display: block;
+}
+
+/*---------------------
+  Stuff for the leftMenu
+---------------------*/
+
+/* When the leftMenu is active */
+.leftMenuActive
+{
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+}
+
+/* When the leftMenu is inactive */
+.leftMenuInActive
+{
+    padding: 0px;
+
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #bbb;
+}
+
+/* When the leftMenu is active */
+.headerLeftMenuActive
+{
+    padding: 5px 0px;
+}
+
+.headerLeftMenuInActive
+{
+    padding: 5px 0px;
+}
+
+.vSpaceLeftMenu
+{
+	padding-top: 0px;
+}
+
+/* For use on headers in the leftMenu */
+.paragraphLeftMenu
+{
+	font-size: 12px;
+	font-weight: bold;
+    line-height: 30px;
+    height: 30px;
+    text-align: center;
+    background-image: url('left_menu_paragraph.png');
+    border: 1px solid #B5B5B5;
+    border-bottom-style: none;
+}
+
+.paragraphLeftMenuActive
+{
+	font-size: 12px;
+	font-weight: bold;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    background-image: url('left_menu_header.png');
+}
+
+/* For use on tables HEADLINES in directory overview tab so it maches the left menu (above)*/
+TD.dirOverviewHeader1
+{
+	font-size: 12px;
+	font-weight:bold;
+	padding-top:12px;
+	padding-left:3px;
+	padding-right:4px;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#000;
+
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#bbb;
+
+	background-color:#f0f0f0;
+}
+
+/* For use on tables HEADLINES (last cell) in directory overview tab so it maches the left menu (above)*/
+TD.dirOverviewHeader2
+{
+	font-size: 12px;
+	font-weight:bold;
+	padding-top:12px;
+	padding-left:3px;
+	padding-right:4px;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#000;
+
+	background-color:#f0f0f0;
+}
+
+/* For use on tables NORMAL CELLS in directory overview tab so it maches the left menu (above)*/
+TD.dirOverviewCell1
+{
+	padding:1px;
+	padding-left:3px;
+	padding-right:3px;
+
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#bbb;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+
+	background-color:#ffffff;
+}
+
+/* For use on tables NORMAL CELLS (last cell) in directory overview tab so it maches the left menu (above)*/
+TD.dirOverviewCell2
+{
+	padding:1px;
+	padding-left:3px;
+	padding-right:3px;
+
+	border-right-style:solid;
+	border-right-width:0px;
+	border-right-color:#bbb;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+
+	background-color:#ffffff;
+}
+
+/* Used for making the frame around the body */
+.frameLeftMenu
+{
+	border: none;
+	margin-bottom:14px;
+    margin-left: 15px;
+    overflow: hidden;
+    width: 200px;
+}
+
+/* To add some air in the bottom of the left menu */
+.leftMenuAirBottom
+{
+    display: none;
+}
+
+/*
+ ----------------------------------------------------------------->
+  Header
+ ----------------------------------------------------------------->
+*/
+
+/* Setting the font for the header of the page */
+.headerPage
+{
+	font-size: 25px;
+	font-weight: bold;
+    font-variant: small-caps;
+    color: #095BA5;
+	padding-left: 170px;
+    background: url('logo.jpg') no-repeat scroll 10px 10px;
+    background-color: #EBEBEB;
+    line-height: 90px;
+}
+
+/* Setting the background color for the top */
+.headerBox
+{
+    line-height: 0px;
+	background-color: #EBEBEB;
+	border-bottom: 1px dashed #CCCCCC;
+}
+
+.logo
+{
+	padding-left:0px;
+}
+
+/*
+ ----------------------------------------------------------------->
+  TABLE WITH BORDER in content
+ ----------------------------------------------------------------->
+*/
+
+/* Border for member tables */
+
+TABLE.widthAndBorderTop
+{
+	width:100%;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#bbb;
+}
+
+TABLE.widthAndBorderTopLeftRight
+{
+	width:100%;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#bbb;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#bbb;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#bbb;
+}
+
+TABLE.widthAndBorderMembers
+{
+	width:94%;
+	border-style:solid;
+	border-width:1px;
+	border-color:#bbb;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#fff;
+}
+
+/* Border fix so it looks nice ;-)
+   For the content in the table. Except for the last one, use paddingNormal2 for that one. */
+TD.paddingNormal1
+{
+	padding:2px;
+	padding-left:3px;
+	padding-right:3px;
+
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#bbb;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+}
+
+/* Border fix so it looks nice ;-)*/
+TD.paddingNormal2
+{
+	padding:2px;
+	padding-left:3px;
+	padding-right:3px;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+}
+
+TD.paddingHeadReturnValue
+{
+	font-weight:bold;
+
+	padding:2px;
+	padding-left:3px;
+	padding-right:3px;
+
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#bbb;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+}
+
+TD.paddingHeadBlank
+{
+	padding:2px;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+}
+
+TD.paddingHeadMultiColumn1
+{
+	padding:2px;
+	padding-left:3px;
+	padding-right:3px;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#bbb;
+
+	background-color:#f0f0f0;
+}
+
+TD.paddingHeadMultiColumn2
+{
+	padding:2px;
+	padding-left:3px;
+	padding-right:3px;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+
+	background-color:#f0f0f0;
+}
+
+TD.oneLine
+{
+	padding:0px;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+}
+
+
+/*
+ ----------------------------------------------------------------->
+  TABLE USER WITH BORDER in content
+ ----------------------------------------------------------------->
+*/
+
+/* Border for member tables */
+
+TABLE.userTableBorder
+{
+	border-style:solid;
+	border-width:1px;
+	border-color:#bbb;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#fff;
+}
+
+/* Border fix so it looks nice ;-)
+   For the content in the table. Except for the last one, use paddingNormal2 for that one. */
+TD.userPaddingNormal1
+{
+	padding:2px;
+	padding-left:3px;
+	padding-right:3px;
+
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#bbb;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+}
+
+/* Border fix so it looks nice ;-)*/
+TD.userPaddingNormal2
+{
+	padding:2px;
+	padding-left:3px;
+	padding-right:3px;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+}
+
+TD.userPaddingHeadMultiColumn1
+{
+	padding:2px;
+	padding-left:3px;
+	padding-right:3px;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#bbb;
+
+	background-color:#f0f0f0;
+}
+
+TD.userPaddingHeadMultiColumn2
+{
+	padding:2px;
+	padding-left:3px;
+	padding-right:3px;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+
+	background-color:#f0f0f0;
+}
+
+TD.userOneLine
+{
+	padding:0px;
+
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#bbb;
+}
+
+
+/*
+ ----------------------------------------------------------------->
+  UserContent
+ ----------------------------------------------------------------->
+*/
+
+/* User paragraph 1 This one you can set from doxygen */
+.userParagraph1
+{
+	font-size: 13px;
+	font-weight:bold;
+	padding-left:0px;
+    background-color: #095BA5;
+    padding: 2px;
+	color: white;
+    margin-bottom: 10px;
+}
+
+/* User paragraph 2 This one you can set from doxygen */
+.userParagraph2
+{
+	font-size: 14px;
+	font-weight:bold;
+	padding-left:0px;
+	color:#000;
+}
+
+/* User paragraph 3 This one you can set from doxygen */
+.userParagraph3
+{
+	font-size: 12px;
+	font-weight:bold;
+	padding-left:0px;
+	color:#000;
+}
+
+/*
+ ----------------------------------------------------------------->
+  Content
+ ----------------------------------------------------------------->
+*/
+
+/* Paragraph 1 is the header on the pages */
+.paragraph1
+{
+	font-size: 18px;
+	font-weight:bold;
+	padding-top:0px;
+	padding-left:4px;
+}
+
+/* Paragraph 2 This is the small bold paragraph on a page */
+.paragraph2
+{
+	font-size: 12px;
+	font-weight:bold;
+	padding-top:12px;
+	padding-left:4px;
+}
+
+/* Paragraph 2 This is the small bold paragraph on a page */
+.paragraph2NoTopPadding
+{
+	font-size: 12px;
+	font-weight:bold;
+	padding-left:4px;
+}
+
+/* For use as a paragraph over a table */
+.paragraphTable
+{
+	font-size: 12px;
+	font-weight:bold;
+	padding-top:12px;
+	padding-left:0px;
+}
+
+/* Used for the paragraph over an example block */
+.paragraphExamples
+{
+	font-size: 12px;
+	font-weight:bold;
+	padding-top:12px;
+	padding-left:0px;
+}
+
+/* For use as a paragraph the See Also block */
+.paragraphSeeAlso
+{
+	font-size: 12px;
+	font-weight:bold;
+	padding-top:12px;
+	padding-left:0px;
+}
+
+/* Used for the paragraph over an syntax block */
+.paragraphSyntax
+{
+	font-size: 12px;
+	font-weight:bold;
+	padding-top:12px;
+	padding-left:0px;
+}
+
+/* Search info text */
+.searchInfoText
+{
+	font-size: 12px;
+	font-weight:bold;
+}
+
+/* Used for the code in an example block */
+.codeExamples
+{
+	font-family: Courier, Arial;
+
+	padding-left:0px;
+	padding-right:4px;
+	margin:0px;
+
+	background-color:#f0f0f0;
+}
+
+/* To add space between the columns in a syntax table*/
+.functionSyntaxTable
+{
+	padding-right:14px;
+}
+
+/* To add space between the columns in search options*/
+.searchOptionsSpace
+{
+	width:8px;
+}
+
+/* Sets the font to a code font*/
+.codeFont
+{
+	font-family: Courier, Arial;
+}
+
+/* Used for adding some space from the left and right so the text gets away from the frame in the content. This is done many places for different tags */
+.padding
+{
+	padding-left:4px;
+	padding-right:4px;
+}
+
+/* Used for adding some space from the left and right so the member content gets away from the frame. This is done many places for different tags */
+.paddingMembers
+{
+	padding-left:30px;
+	padding-right:4px;
+}
+
+/* Used for adding some space from the left, right and top so that author and version gets away from the frame and the top. */
+.paddingAuthor
+{
+	padding-left:30px;
+	padding-right:4px;
+	padding-top:2px;
+}
+
+/* Used for adding some space from the left and right to the table */
+.paddingMembersTableDiv
+{
+	padding-left:30px;
+	padding-right:4px;
+}
+
+/* Deprecated padding This is the text for Deprecated */
+.depPadding
+{
+	font-weight:bold;
+	padding-left:30px;
+	color:#f00;
+}
+
+/* Explain Anonymous This is the text for ExplainAnonymous */
+.explainAnonymous
+{
+	color:#600;
+}
+
+/* Used for setting the width of all content tables!! */
+TABLE.width
+{
+	width:100%;
+}
+
+/* Used for getting some space around the body */
+.sideIndent
+{
+	width:18px;
+	height:1px;
+}
+
+/* Used for making the frame around the content */
+.frame
+{
+	border-style:solid;
+	border-width:1px;
+	border-color: #E1EDC5;
+    background-color: #F7FAF1;
+	margin-bottom:4px;
+}
+
+/* Addes space from the page header to the tabs */
+.headerVSpaceToTab
+{
+	height:18px;
+}
+
+/* Addes space from the frame to the first line */
+.contentAirTop
+{
+	font-size: 1px; /* So the font don't have influence on height: */
+	height:14px;
+}
+
+/* Addes space from the bottom line to the frame */
+.contentAirBottom
+{
+	font-size: 1px; /* So the font don't have influence on height: */
+	height:14px;
+}
+
+/*
+ ----------------------------------------------------------------->
+  Footer
+ ----------------------------------------------------------------->
+*/
+
+.doxygenFooter
+{
+	margin-bottom:18px;
+}
+
+
+A.generatedDoxygen
+{
+    display: none;
+}
+
+/*
+ ----------------------------------------------------------------->
+  OL and UL indent
+ ----------------------------------------------------------------->
+*/
+
+OL
+{
+  margin-left:31px;
+  margin-right:0px;
+  margin-top:0px;
+  margin-bottom:0px;
+  padding-left:0px;
+}
+
+UL
+{
+  margin-left:25px;
+  margin-right:0px;
+  margin-top:0px;
+  margin-bottom:0px;
+  padding-left:0px;
+}
+
+UL UL
+{
+  margin-left:16px;
+  margin-right:0px;
+  margin-top:0px;
+  margin-bottom:0px;
+  padding-left:0px;
+}
+
+OL OL
+{
+  margin-left:23px;
+  margin-right:0px;
+  margin-top:0px;
+  margin-bottom:0px;
+  padding-left:0px;
+}
+
+UL OL
+{
+  margin-left:24px;
+  margin-right:0px;
+  margin-top:0px;
+  margin-bottom:0px;
+  padding-left:0px;
+}
+
+OL UL
+{
+  margin-left:16px;
+  margin-right:0px;
+  margin-top:0px;
+  margin-bottom:0px;
+  padding-left:0px;
+}
+
+/*
+ ----------------------------------------------------------------->
+  Legend colors
+ ----------------------------------------------------------------->
+*/
+
+.legendColorBlackBox
+{
+	background-color:#000000;
+	color:#ffffff;
+	border-color:#000000;
+	border-style:solid;
+	border-width:1px;
+}
+
+.legendColorBlack
+{
+	border-color:#000000;
+	border-style:solid;
+	border-width:1px;
+}
+
+.legendColorGray
+{
+	border-color:#bfbfbf;
+	border-style:solid;
+	border-width:1px;
+}
+
+.legendColorRed
+{
+	border-color:#ff0000;
+	border-style:solid;
+	border-width:1px;
+}
+
+.legendColorDarkBlue
+{
+	background-color:#191970;
+	border-color:#191970;
+	border-style:solid;
+	border-width:1px;
+}
+
+.legendColorDarkGreen
+{
+	background-color:#006400;
+	border-color:#006400;
+	border-style:solid;
+	border-width:1px;
+}
+
+.legendColorDarkRed
+{
+	background-color:#8b1a1a;
+	border-color:#8b1a1a;
+	border-style:solid;
+	border-width:1px;
+}
+
+.legendColorPurple
+{
+	background-color:#9832cd;
+	border-color:#9832cd;
+	border-style:solid;
+	border-width:1px;
+}
+
+.legendColorDarkYellow
+{
+	background-color:#ffa200;
+	border-color:#ffa200;
+	border-style:solid;
+	border-width:1px;
+}
+
+LI.legend
+{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+/*
+ ----------------------------------------------------------------->
+  Rulers
+ ----------------------------------------------------------------->
+*/
+
+.hrThin
+{
+	background-color:#bbb;
+	height:1px;
+	width:100%;
+	margin-top:10px;
+	margin-bottom:8px;
+}
+
+.hrFat
+{
+	background-color:#bbb;
+	height:2px;
+	width:100%;
+	margin-top:10px;
+	margin-bottom:8px;
+}
+
+
+/*
+ ----------------------------------------------------------------->
+  LANGAUGE
+ ----------------------------------------------------------------->
+*/
+
+.defaultLangauge
+{
+	color:#600;
+}
+
+/*
+ ----------------------------------------------------------------->
+  Homepage
+ ----------------------------------------------------------------->
+*/
+
+.errText
+{
+	color:#f00;
+	font-weight:bold;
+}
+
+.errTable
+{
+	border-style:solid;
+	border-width:2px;
+	border-color:#f00;
+}
+
+/*
+ ----------------------------------------------------------------->
+  Statistics
+ ----------------------------------------------------------------->
+*/
+
+TD.timerTable
+{
+	width:200px;
+}
+
+/*
+ ----------------------------------------------------------------->
+  Custom tags
+ ----------------------------------------------------------------->
+*/
+
+IMG.figure
+{
+    border: 1px solid #BDC7A5;
+    background-color: white;
+    margin: auto;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+

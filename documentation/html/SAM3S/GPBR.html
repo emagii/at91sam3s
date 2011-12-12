@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>SAM3S GPBR</title>
+    <link rel="stylesheet" type="text/css" href="css/html.css" media="all" />
+  </head>
+  <body id="abstract">
+    <div id="container">
+      <div id="content">
+        <a id="GPBR"></a>
+        <h1>SAM3S GPBR</h1>
+        <a id="GPBR__User_Interface"></a>
+        <h2>General Purpose Backup Register (GPBR) User Interface</h2>
+<!--As per 6378B programmer datasheet.-->
+        <h3>Registers</h3>
+        <table class="registers">
+          <caption>Register Mapping</caption>
+          <thead>
+            <tr>
+              <th class="address">Address</th>
+              <th class="description">Register</th>
+              <th class="name">Name</th>
+              <th class="access">Access</th>
+              <th class="reset">Reset</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd">
+              <td class="address" id="address_0x400E1490">0x400E1490</td>
+              <td class="description">General Purpose Backup Register 0</td>
+              <td class="name">
+                <a href="#GPBR_GPBR0" title="General Purpose Backup Register 0" class="one_click_away">GPBR_GPBR0</a>
+              </td>
+              <td class="access">read-write</td>
+              <td class="address">-</td>
+            </tr>
+            <tr class="even">
+              <td class="address" id="address_0x400E1494">0x400E1494</td>
+              <td class="description">General Purpose Backup Register 1</td>
+              <td class="name">
+                <a href="#GPBR_GPBR1" title="General Purpose Backup Register 1" class="one_click_away">GPBR_GPBR1</a>
+              </td>
+              <td class="access">read-write</td>
+              <td class="address">-</td>
+            </tr>
+            <tr class="odd">
+              <td class="address" id="address_0x400E1498">0x400E1498</td>
+              <td class="description">General Purpose Backup Register 2</td>
+              <td class="name">
+                <a href="#GPBR_GPBR2" title="General Purpose Backup Register 2" class="one_click_away">GPBR_GPBR2</a>
+              </td>
+              <td class="access">read-write</td>
+              <td class="address">-</td>
+            </tr>
+            <tr class="even">
+              <td class="address" id="address_0x400E149C">0x400E149C</td>
+              <td class="description">General Purpose Backup Register 3</td>
+              <td class="name">
+                <a href="#GPBR_GPBR3" title="General Purpose Backup Register 3" class="one_click_away">GPBR_GPBR3</a>
+              </td>
+              <td class="access">read-write</td>
+              <td class="address">-</td>
+            </tr>
+            <tr class="odd">
+              <td class="address" id="address_0x400E14A0">0x400E14A0</td>
+              <td class="description">General Purpose Backup Register 4</td>
+              <td class="name">
+                <a href="#GPBR_GPBR4" title="General Purpose Backup Register 4" class="one_click_away">GPBR_GPBR4</a>
+              </td>
+              <td class="access">read-write</td>
+              <td class="address">-</td>
+            </tr>
+            <tr class="even">
+              <td class="address" id="address_0x400E14A4">0x400E14A4</td>
+              <td class="description">General Purpose Backup Register 5</td>
+              <td class="name">
+                <a href="#GPBR_GPBR5" title="General Purpose Backup Register 5" class="one_click_away">GPBR_GPBR5</a>
+              </td>
+              <td class="access">read-write</td>
+              <td class="address">-</td>
+            </tr>
+            <tr class="odd">
+              <td class="address" id="address_0x400E14A8">0x400E14A8</td>
+              <td class="description">General Purpose Backup Register 6</td>
+              <td class="name">
+                <a href="#GPBR_GPBR6" title="General Purpose Backup Register 6" class="one_click_away">GPBR_GPBR6</a>
+              </td>
+              <td class="access">read-write</td>
+              <td class="address">-</td>
+            </tr>
+            <tr class="even">
+              <td class="address" id="address_0x400E14AC">0x400E14AC</td>
+              <td class="description">General Purpose Backup Register 7</td>
+              <td class="name">
+                <a href="#GPBR_GPBR7" title="General Purpose Backup Register 7" class="one_click_away">GPBR_GPBR7</a>
+              </td>
+              <td class="access">read-write</td>
+              <td class="address">-</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Register Fields</h3>
+        <h4 id="GPBR_GPBR0">GPBR General Purpose Backup Register 0</h4>
+        <p><strong>Name</strong>: GPBR_GPBR0</p>
+        <p><strong>Access</strong>: read-write</p>
+        <p><strong>Address</strong>: 0x400E1490</p>
+        <table class="fields">
+          <tbody>
+            <tr class="offsets">
+              <td>31</td>
+              <td>30</td>
+              <td>29</td>
+              <td>28</td>
+              <td>27</td>
+              <td>26</td>
+              <td>25</td>
+              <td>24</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR0__GPBR_VALUE0" title="Value of GPBR x">GPBR_VALUE0</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>23</td>
+              <td>22</td>
+              <td>21</td>
+              <td>20</td>
+              <td>19</td>
+              <td>18</td>
+              <td>17</td>
+              <td>16</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR0__GPBR_VALUE0" title="Value of GPBR x">GPBR_VALUE0</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>15</td>
+              <td>14</td>
+              <td>13</td>
+              <td>12</td>
+              <td>11</td>
+              <td>10</td>
+              <td>9</td>
+              <td>8</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR0__GPBR_VALUE0" title="Value of GPBR x">GPBR_VALUE0</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>7</td>
+              <td>6</td>
+              <td>5</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR0__GPBR_VALUE0" title="Value of GPBR x">GPBR_VALUE0</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="values">
+          <li id="GPBR_GPBR0__GPBR_VALUE0"><strong>GPBR_VALUE0</strong>: Value of GPBR x</li>
+          <p>-</p>
+        </ul>
+        <h4 id="GPBR_GPBR1">GPBR General Purpose Backup Register 1</h4>
+        <p><strong>Name</strong>: GPBR_GPBR1</p>
+        <p><strong>Access</strong>: read-write</p>
+        <p><strong>Address</strong>: 0x400E1494</p>
+        <table class="fields">
+          <tbody>
+            <tr class="offsets">
+              <td>31</td>
+              <td>30</td>
+              <td>29</td>
+              <td>28</td>
+              <td>27</td>
+              <td>26</td>
+              <td>25</td>
+              <td>24</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR1__GPBR_VALUE1" title="Value of GPBR x">GPBR_VALUE1</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>23</td>
+              <td>22</td>
+              <td>21</td>
+              <td>20</td>
+              <td>19</td>
+              <td>18</td>
+              <td>17</td>
+              <td>16</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR1__GPBR_VALUE1" title="Value of GPBR x">GPBR_VALUE1</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>15</td>
+              <td>14</td>
+              <td>13</td>
+              <td>12</td>
+              <td>11</td>
+              <td>10</td>
+              <td>9</td>
+              <td>8</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR1__GPBR_VALUE1" title="Value of GPBR x">GPBR_VALUE1</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>7</td>
+              <td>6</td>
+              <td>5</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR1__GPBR_VALUE1" title="Value of GPBR x">GPBR_VALUE1</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="values">
+          <li id="GPBR_GPBR1__GPBR_VALUE1"><strong>GPBR_VALUE1</strong>: Value of GPBR x</li>
+          <p>-</p>
+        </ul>
+        <h4 id="GPBR_GPBR2">GPBR General Purpose Backup Register 2</h4>
+        <p><strong>Name</strong>: GPBR_GPBR2</p>
+        <p><strong>Access</strong>: read-write</p>
+        <p><strong>Address</strong>: 0x400E1498</p>
+        <table class="fields">
+          <tbody>
+            <tr class="offsets">
+              <td>31</td>
+              <td>30</td>
+              <td>29</td>
+              <td>28</td>
+              <td>27</td>
+              <td>26</td>
+              <td>25</td>
+              <td>24</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR2__GPBR_VALUE2" title="Value of GPBR x">GPBR_VALUE2</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>23</td>
+              <td>22</td>
+              <td>21</td>
+              <td>20</td>
+              <td>19</td>
+              <td>18</td>
+              <td>17</td>
+              <td>16</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR2__GPBR_VALUE2" title="Value of GPBR x">GPBR_VALUE2</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>15</td>
+              <td>14</td>
+              <td>13</td>
+              <td>12</td>
+              <td>11</td>
+              <td>10</td>
+              <td>9</td>
+              <td>8</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR2__GPBR_VALUE2" title="Value of GPBR x">GPBR_VALUE2</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>7</td>
+              <td>6</td>
+              <td>5</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR2__GPBR_VALUE2" title="Value of GPBR x">GPBR_VALUE2</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="values">
+          <li id="GPBR_GPBR2__GPBR_VALUE2"><strong>GPBR_VALUE2</strong>: Value of GPBR x</li>
+          <p>-</p>
+        </ul>
+        <h4 id="GPBR_GPBR3">GPBR General Purpose Backup Register 3</h4>
+        <p><strong>Name</strong>: GPBR_GPBR3</p>
+        <p><strong>Access</strong>: read-write</p>
+        <p><strong>Address</strong>: 0x400E149C</p>
+        <table class="fields">
+          <tbody>
+            <tr class="offsets">
+              <td>31</td>
+              <td>30</td>
+              <td>29</td>
+              <td>28</td>
+              <td>27</td>
+              <td>26</td>
+              <td>25</td>
+              <td>24</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR3__GPBR_VALUE3" title="Value of GPBR x">GPBR_VALUE3</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>23</td>
+              <td>22</td>
+              <td>21</td>
+              <td>20</td>
+              <td>19</td>
+              <td>18</td>
+              <td>17</td>
+              <td>16</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR3__GPBR_VALUE3" title="Value of GPBR x">GPBR_VALUE3</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>15</td>
+              <td>14</td>
+              <td>13</td>
+              <td>12</td>
+              <td>11</td>
+              <td>10</td>
+              <td>9</td>
+              <td>8</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR3__GPBR_VALUE3" title="Value of GPBR x">GPBR_VALUE3</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>7</td>
+              <td>6</td>
+              <td>5</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR3__GPBR_VALUE3" title="Value of GPBR x">GPBR_VALUE3</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="values">
+          <li id="GPBR_GPBR3__GPBR_VALUE3"><strong>GPBR_VALUE3</strong>: Value of GPBR x</li>
+          <p>-</p>
+        </ul>
+        <h4 id="GPBR_GPBR4">GPBR General Purpose Backup Register 4</h4>
+        <p><strong>Name</strong>: GPBR_GPBR4</p>
+        <p><strong>Access</strong>: read-write</p>
+        <p><strong>Address</strong>: 0x400E14A0</p>
+        <table class="fields">
+          <tbody>
+            <tr class="offsets">
+              <td>31</td>
+              <td>30</td>
+              <td>29</td>
+              <td>28</td>
+              <td>27</td>
+              <td>26</td>
+              <td>25</td>
+              <td>24</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR4__GPBR_VALUE4" title="Value of GPBR x">GPBR_VALUE4</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>23</td>
+              <td>22</td>
+              <td>21</td>
+              <td>20</td>
+              <td>19</td>
+              <td>18</td>
+              <td>17</td>
+              <td>16</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR4__GPBR_VALUE4" title="Value of GPBR x">GPBR_VALUE4</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>15</td>
+              <td>14</td>
+              <td>13</td>
+              <td>12</td>
+              <td>11</td>
+              <td>10</td>
+              <td>9</td>
+              <td>8</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR4__GPBR_VALUE4" title="Value of GPBR x">GPBR_VALUE4</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>7</td>
+              <td>6</td>
+              <td>5</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR4__GPBR_VALUE4" title="Value of GPBR x">GPBR_VALUE4</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="values">
+          <li id="GPBR_GPBR4__GPBR_VALUE4"><strong>GPBR_VALUE4</strong>: Value of GPBR x</li>
+          <p>-</p>
+        </ul>
+        <h4 id="GPBR_GPBR5">GPBR General Purpose Backup Register 5</h4>
+        <p><strong>Name</strong>: GPBR_GPBR5</p>
+        <p><strong>Access</strong>: read-write</p>
+        <p><strong>Address</strong>: 0x400E14A4</p>
+        <table class="fields">
+          <tbody>
+            <tr class="offsets">
+              <td>31</td>
+              <td>30</td>
+              <td>29</td>
+              <td>28</td>
+              <td>27</td>
+              <td>26</td>
+              <td>25</td>
+              <td>24</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR5__GPBR_VALUE5" title="Value of GPBR x">GPBR_VALUE5</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>23</td>
+              <td>22</td>
+              <td>21</td>
+              <td>20</td>
+              <td>19</td>
+              <td>18</td>
+              <td>17</td>
+              <td>16</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR5__GPBR_VALUE5" title="Value of GPBR x">GPBR_VALUE5</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>15</td>
+              <td>14</td>
+              <td>13</td>
+              <td>12</td>
+              <td>11</td>
+              <td>10</td>
+              <td>9</td>
+              <td>8</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR5__GPBR_VALUE5" title="Value of GPBR x">GPBR_VALUE5</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>7</td>
+              <td>6</td>
+              <td>5</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR5__GPBR_VALUE5" title="Value of GPBR x">GPBR_VALUE5</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="values">
+          <li id="GPBR_GPBR5__GPBR_VALUE5"><strong>GPBR_VALUE5</strong>: Value of GPBR x</li>
+          <p>-</p>
+        </ul>
+        <h4 id="GPBR_GPBR6">GPBR General Purpose Backup Register 6</h4>
+        <p><strong>Name</strong>: GPBR_GPBR6</p>
+        <p><strong>Access</strong>: read-write</p>
+        <p><strong>Address</strong>: 0x400E14A8</p>
+        <table class="fields">
+          <tbody>
+            <tr class="offsets">
+              <td>31</td>
+              <td>30</td>
+              <td>29</td>
+              <td>28</td>
+              <td>27</td>
+              <td>26</td>
+              <td>25</td>
+              <td>24</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR6__GPBR_VALUE6" title="Value of GPBR x">GPBR_VALUE6</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>23</td>
+              <td>22</td>
+              <td>21</td>
+              <td>20</td>
+              <td>19</td>
+              <td>18</td>
+              <td>17</td>
+              <td>16</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR6__GPBR_VALUE6" title="Value of GPBR x">GPBR_VALUE6</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>15</td>
+              <td>14</td>
+              <td>13</td>
+              <td>12</td>
+              <td>11</td>
+              <td>10</td>
+              <td>9</td>
+              <td>8</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR6__GPBR_VALUE6" title="Value of GPBR x">GPBR_VALUE6</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>7</td>
+              <td>6</td>
+              <td>5</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR6__GPBR_VALUE6" title="Value of GPBR x">GPBR_VALUE6</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="values">
+          <li id="GPBR_GPBR6__GPBR_VALUE6"><strong>GPBR_VALUE6</strong>: Value of GPBR x</li>
+          <p>-</p>
+        </ul>
+        <h4 id="GPBR_GPBR7">GPBR General Purpose Backup Register 7</h4>
+        <p><strong>Name</strong>: GPBR_GPBR7</p>
+        <p><strong>Access</strong>: read-write</p>
+        <p><strong>Address</strong>: 0x400E14AC</p>
+        <table class="fields">
+          <tbody>
+            <tr class="offsets">
+              <td>31</td>
+              <td>30</td>
+              <td>29</td>
+              <td>28</td>
+              <td>27</td>
+              <td>26</td>
+              <td>25</td>
+              <td>24</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR7__GPBR_VALUE7" title="Value of GPBR x">GPBR_VALUE7</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>23</td>
+              <td>22</td>
+              <td>21</td>
+              <td>20</td>
+              <td>19</td>
+              <td>18</td>
+              <td>17</td>
+              <td>16</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR7__GPBR_VALUE7" title="Value of GPBR x">GPBR_VALUE7</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>15</td>
+              <td>14</td>
+              <td>13</td>
+              <td>12</td>
+              <td>11</td>
+              <td>10</td>
+              <td>9</td>
+              <td>8</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR7__GPBR_VALUE7" title="Value of GPBR x">GPBR_VALUE7</a>
+              </td>
+            </tr>
+            <tr class="offsets">
+              <td>7</td>
+              <td>6</td>
+              <td>5</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr class="fields">
+              <td colspan="8">
+                <a href="#GPBR_GPBR7__GPBR_VALUE7" title="Value of GPBR x">GPBR_VALUE7</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="values">
+          <li id="GPBR_GPBR7__GPBR_VALUE7"><strong>GPBR_VALUE7</strong>: Value of GPBR x</li>
+          <p>-</p>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
