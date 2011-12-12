@@ -162,7 +162,8 @@ static void _RefreshDisplay( void )
         printf("\n\rChoice? ");
 #if defined (  __GNUC__  )
         fflush(stdout);
-#endif    }
+#endif
+    }
     /* Set alarm */
     else
     {
