@@ -103,9 +103,9 @@
 #define BUTTON_WAKEUP   (0x1 << 12)
 
 /** Definition of Main On-Chip RC Oscillator Frequency Selection */
-#define FAST_RC_OSC_4MHZ    CKGR_MOR_MOSCRCF(0x0)
-#define FAST_RC_OSC_8MHZ    CKGR_MOR_MOSCRCF(0x1)
-#define FAST_RC_OSC_12MHZ   CKGR_MOR_MOSCRCF(0x2)
+#define FAST_RC_OSC_4MHZ    CKGR_MOR_MOSCRCF_4MHZ
+#define FAST_RC_OSC_8MHZ    CKGR_MOR_MOSCRCF_8MHZ
+#define FAST_RC_OSC_12MHZ   CKGR_MOR_MOSCRCF_12MHZ
 
 /*----------------------------------------------------------------------------
  *        Local variables
