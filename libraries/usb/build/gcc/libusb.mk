@@ -209,8 +209,8 @@ create_output:
 #	@echo *$(A_SRC)
 #	@echo -------------------------
 
-	-@mkdir $(subst /,$(SEP),$(OUTPUT_BIN)) 1>NUL 2>&1
-	-@mkdir $(OUTPUT_PATH) 1>NUL 2>&1
+	-@$(MKDIR) $(subst /,$(SEP),$(OUTPUT_BIN)) 1>$(NULL) 2>&1
+	-@$(MKDIR) $(OUTPUT_PATH) 1>$(NULL) 2>&1
 
 $(addprefix $(OUTPUT_PATH)/,$(C_OBJ)): $(OUTPUT_PATH)/%.o: %.c
 	@$(CC) -c $(CFLAGS) $< -o $@
@@ -224,10 +224,10 @@ $(OUTPUT_LIB): $(addprefix $(OUTPUT_PATH)/, $(C_OBJ)) $(addprefix $(OUTPUT_PATH)
 .PHONY: clean
 clean:
 	@echo --- Cleaning $(LIBNAME) files [$(OUTPUT_PATH)$(SEP)*.o]
-#	-cs-rm -fR $(OUTPUT_PATH)
-#	-cs-rm $(subst /,$(SEP),$(OUTPUT_BIN)/$(OUTPUT_LIB))
+#	-$(CS_RM) -fR $(OUTPUT_PATH)
+#	-$(CS_RM) $(subst /,$(SEP),$(OUTPUT_BIN)/$(OUTPUT_LIB))
 	
-	-@cs-rm -fR $(OUTPUT_PATH) 1>NUL 2>&1
-	-@cs-rm -fR $(OUTPUT_BIN)/$(OUTPUT_LIB) 1>NUL 2>&1
+	-@$(CS_RM) -fR $(OUTPUT_PATH) 1>$(NULL) 2>&1
+	-@$(CS_RM) -fR $(OUTPUT_BIN)/$(OUTPUT_LIB) 1>$(NULL) 2>&1
 
 $(addprefix $(OUTPUT_PATH)/,$(C_OBJ)):

@@ -158,9 +158,11 @@ create_output:
 #	@echo -------------------------
 #	@echo *$(A_SRC)
 #	@echo -------------------------
-
-	-@mkdir $(subst /,$(SEP),$(OUTPUT_BIN)) 1>NUL 2>&1
-	-@mkdir $(OUTPUT_PATH) 1>NUL 2>&1
+#	echo	"SEP		$(SEP)"
+#	echo	"OUTPUT_BIN	$(OUTPUT_BIN)"
+#	echo	"OUTPUT_PATH	$(OUTPUT_PATH)"
+	-@$(MKDIR)	$(subst /,$(SEP),$(OUTPUT_BIN)) 1>$(NULL) 2>&1
+	-@$(MKDIR)	$(OUTPUT_PATH) 1>$(NULL) 2>&1
 
 #%.o : %.c %.h chip.h $(SUB_MAKEFILES)
 #	$(CC) -c $(CFLAGS) $< -o $(OUTPUT_PATH)/$@
@@ -183,7 +185,7 @@ $(OUTPUT_LIB): $(addprefix $(OUTPUT_PATH)/, $(C_OBJ)) $(addprefix $(OUTPUT_PATH)
 .PHONY: clean
 clean:
 	@echo --- Cleaning $(CHIP) files
-	-@cs-rm -Rf $(OUTPUT_PATH) 1>NUL 2>&1
-	-@cs-rm -Rf $(subst /,$(SEP),$(OUTPUT_BIN)/$(OUTPUT_LIB)) 1>NUL 2>&1
+	-@$(CS_RM) -Rf $(OUTPUT_PATH) 1>$(NULL) 2>&1
+	-@$(CS_RM) -Rf $(subst /,$(SEP),$(OUTPUT_BIN)/$(OUTPUT_LIB)) 1>$(NULL) 2>&1
 
 $(addprefix $(OUTPUT_PATH)/,$(C_OBJ)): $(OUTPUT_PATH)/%.o: $(PROJECT_BASE_PATH)/chip.h $(wildcard $(PROJECT_BASE_PATH)/include/*.h) $(wildcard $(PROJECT_BASE_PATH)/cmsis/*.h)

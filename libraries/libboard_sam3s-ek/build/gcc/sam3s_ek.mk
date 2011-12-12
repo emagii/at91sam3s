@@ -164,8 +164,8 @@ create_output:
 #	@echo *$(A_SRC)
 #	@echo -------------------------
 
-	-@mkdir $(subst /,$(SEP),$(OUTPUT_BIN)) 1>NUL 2>&1
-	-@mkdir $(OUTPUT_PATH) 1>NUL 2>&1
+	-@$(MKDIR) $(subst /,$(SEP),$(OUTPUT_BIN)) 1>NUL 2>&1
+	-@$(MKDIR) $(OUTPUT_PATH) 1>NUL 2>&1
 
 $(addprefix $(OUTPUT_PATH)/,$(C_OBJ)): $(OUTPUT_PATH)/%.o: %.c
 	@$(CC) -c $(CFLAGS) $< -o $@
