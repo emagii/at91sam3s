@@ -6,4 +6,6 @@
 examples/*/build/gcc/bin/*
 libraries/libchip_sam3s/lib/*
 examples_*/*/build/gcc/bin/*
+Thumbs.db
+*.bak
 
