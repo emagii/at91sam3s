@@ -8,4 +8,6 @@ libraries/libchip_sam3s/lib/*
 examples_*/*/build/gcc/bin/*
 Thumbs.db
 *.bak
+*.elf
+*.map
 
