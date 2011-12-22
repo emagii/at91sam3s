@@ -1,0 +1,604 @@
+/* ----------------------------------------------------------------------------
+ *         ATMEL Microcontroller Software Support
+ * ----------------------------------------------------------------------------
+ * Copyright (c) 2009, Atmel Corporation
+ *
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * - Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the disclaimer below.
+ *
+ * Atmel's name may not be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * DISCLAIMER: THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
+ * DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * ----------------------------------------------------------------------------
+ */
+
+/**
+ *  \page fatfs_nandflash FATFS Nandflash Example
+ *
+ *  \section Purpose
+ *
+ *  The FATFS Nandflash Example will help you to get familiar with
+ *  filesystem on sam3s.
+ *  It supplies sample code of common operations of a filesystem through a NAND
+ *  FLASH based filesystem.
+ *  It can also help you to configure the filesystem according to your own
+ *  needs, which can be used for fast implementation of your own filesystem and
+ *  other applications related.
+ *  FatFs is a generic file system module to implement the FAT file system to
+ *  small embedded systems.
+ *
+ *  \section See
+ *
+ *  <a href="http://elm-chan.org/fsw/ff/00index_e.html">
+ *  FATFs Website</a>
+ *  <a href="../../../external_libs/fat/fatfs/doc/00index_e.html">
+ *  FAT File System Module </a>
+ *
+ *  You can find following information depends on your needs:
+ *  - Supply a set of file system interface for user to do file related work,
+ *    e.g. mount a disk, initialize a disk, create/open a file, write/read a
+ *    file e.t.c
+ *  - Supply a set of disk level interface for user's reference, which is
+ *    called by filesystem level
+ *  - Teaches user how to use these interfaces through sample code
+ *  - Configuration of a filesystem, e.g. user can build up a tiny filesystem
+ *    which consume low memory, or a filesystem with read-only functions
+ *
+ *  \section Requirements
+ *
+ *  This package can be used with sam3s-ek which has NAND FLASH device.
+ *
+ *  \section Description
+ *
+ *  Open HyperTerminal before running this program, use SAM-BA to download this
+ *  program to flash , make the program run, the HyperTerminal will give
+ *  out the test results.
+ *
+ *  \section Usage
+ *
+ *  -# Build the program and download it inside the evaluation board. Please
+ *     refer to the
+ *     <a href="http://www.atmel.com/dyn/resources/prod_documents/doc6224.pdf">
+ *     SAM-BA User Guide</a>, the
+ *     <a href="http://www.atmel.com/dyn/resources/prod_documents/doc6310.pdf">
+ *     GNU-Based Software Development</a> application note or to the
+ *     <a href="ftp://ftp.iar.se/WWWfiles/arm/Guides/EWARM_UserGuide.ENU.pdf">
+ *     IAR EWARM User Guide</a>, depending on your chosen solution.
+ *  -# On the computer, open and configure a terminal application
+ *     (e.g. HyperTerminal on Microsoft Windows) with these settings:
+ *    - 115200 bauds
+ *    - 8 bits of data
+ *    - No parity
+ *    - 1 stop bit
+ *    - No flow control
+ *  -# Start the application
+ *  -# In HyperTerminal, it will show something like
+ *     \code
+ *     -- FatFS Full Version with NAND Example xxx --
+ *     -- SAMxxx
+ *     -- Compiled: xxx --
+ *     \endcode
+ *
+ */
+
+/**
+ *  \file
+ *
+ *  \section Purpose
+ *
+ *  This file contains all the specific code for the fatfs_nandflash example
+ *
+ *  \section Contents
+ *  The fatfs_nandflash application can be roughly broken down as
+ *  follows:
+ *     - The main function, which implements the program behavior
+ *        - NAND Flash initialize
+ *        - Mount a disk
+ *        - Initialize a disk in NAND Flash
+ *        - Create a new file
+ *        - Write something to a opened file
+ *        - Close a file
+ *        - Open an existing file
+ *        - Read a file
+ *        - Close a file
+ *        - Compare the reading result, print the compare result to DBGU
+ */
+
+/*----------------------------------------------------------------------------
+ *        Headers
+ *----------------------------------------------------------------------------*/
+
+#include "board.h"
+
+/* These headers were introduced in C99 by working group ISO/IEC JTC1/SC22/WG14. */
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+
+#include "memories.h"
+
+#include "fatfs_config.h"
+#include "firmware.h"
+#include "main.h"
+
+/*----------------------------------------------------------------------------
+ *        Local constants
+ *----------------------------------------------------------------------------*/
+
+/** Maximum number of Medias which can be defined. */
+#define MAX_MEDS        1
+
+/** Size of buffer used for create and test a file */
+#define SECTOR_SIZE       512
+
+/** Size of the reserved Nand Flash (4M) */
+#define NF_RESERVE_SIZE     (4*1024*1024)
+
+/** Size of the managed Nand Flash (128M) */
+#define NF_MANAGED_SIZE     (128*1024*1024)
+
+/*----------------------------------------------------------------------------
+ *        Local variables
+ *----------------------------------------------------------------------------*/
+
+#if _FS_TINY == 0
+#define STR_ROOT_DIRECTORY "0:"
+#else
+#define STR_ROOT_DIRECTORY ""
+#endif
+
+/** Available medias. */
+Media medias[MAX_MEDS];
+
+/** File name */
+const char *Root_Dir = STR_ROOT_DIRECTORY;
+const char *FileName = STR_ROOT_DIRECTORY "firmware.bin";
+
+/** Buffer for create and use a file */
+uint8_t sector_cache[SECTOR_SIZE];
+
+/** Pins used to access to nandflash. */
+static const Pin pPinsNf[] = { PINS_NANDFLASH };
+
+/** Nandflash device structure. */
+static struct TranslatedNandFlash translatedNf;
+/** Address for transferring command bytes to the nandflash. */
+static uint32_t cmdBytesAddr = BOARD_NF_COMMAND_ADDR;
+/** Address for transferring address bytes to the nandflash. */
+static uint32_t addrBytesAddr = BOARD_NF_ADDRESS_ADDR;
+/** Address for transferring data bytes to the nandflash. */
+static uint32_t dataBytesAddr = BOARD_NF_DATA_ADDR;
+/** Nandflash chip enable pin. */
+static const Pin nfCePin = BOARD_NF_CE_PIN;
+/** Nandflash ready/busy pin. */
+static const Pin nfRbPin = BOARD_NF_RB_PIN;
+
+/*----------------------------------------------------------------------------
+ *        Local Functions
+ *----------------------------------------------------------------------------*/
+
+/**
+ *  \brief Wait DEBUG Key Input
+ *  \param ms   Wait time in ms.
+ *  \param echo Wether echo the key.
+ *  \return key or 0 for nothing.
+ */
+bool	global_echo=false;
+
+static uint8_t WaitKey(volatile uint32_t ms, bool echo)
+{
+	uint8_t key;
+	uint32_t tick = GetTickCount();
+	do {
+
+		if (UART_IsRxReady()) {
+
+			key = UART_GetChar();
+			if (echo | global_echo)
+				UART_PutChar(key);
+			return key;
+		}
+
+		/* ms > 0, check tick */
+		if (ms && (GetTickCount() - tick > ms)) {
+			break;
+		}
+	} while (1);
+
+	return 0;
+}
+
+/**
+ *  \brief Scan Files on Disk
+ */
+static FRESULT scan_files(char *path)
+{
+	FRESULT res;
+	FILINFO fno;
+	DIR dir;
+	int i;
+	char *fn;
+#if _USE_LFN
+	static char lfn[_MAX_LFN * (_DF1S ? 2 : 1) + 1];
+	fno.lfname = lfn;
+	fno.lfsize = sizeof(lfn);
+#endif
+
+	res = f_opendir(&dir, path);
+	if (res == FR_OK) {
+		i = strlen(path);
+		for (;;) {
+			res = f_readdir(&dir, &fno);
+			if (res != FR_OK || fno.fname[0] == 0)
+				break;
+#if _USE_LFN
+			fn = *fno.lfname ? fno.lfname : fno.fname;
+#else
+			fn = fno.fname;
+#endif
+			if (*fn == '.')
+				continue;
+			if (fno.fattrib & AM_DIR) {
+				sprintf(&path[i], "/%s", fn);
+				res = scan_files(path);
+				if (res != FR_OK)
+					break;
+				path[i] = 0;
+			} else {
+				printf("%s/%s\r\n", path, fn);
+			}
+		}
+	}
+
+	return res;
+}
+
+/**
+ *  \brief Initialize Nand Flash
+ *  \return true if initialized succesfully.
+ */
+static uint8_t NandFlashInitialize(void)
+{
+	uint8_t nfRc;
+	uint16_t nfBaseBlock = 0;
+	struct RawNandFlash *pRaw = (struct RawNandFlash *)&translatedNf;
+	struct NandFlashModel *pModel = (struct NandFlashModel *)&translatedNf;
+	uint32_t nfManagedSize;
+
+	/* Configure for NandFlash */
+
+	BOARD_ConfigureNandFlash(SMC);
+	/* Configure PIO for Nand Flash */
+	PIO_Configure(pPinsNf, PIO_LISTSIZE(pPinsNf));
+
+	/* Nand Flash Initialize (ALL flash mapped) */
+	nfRc = RawNandFlash_Initialize(pRaw,
+				       0,
+				       cmdBytesAddr,
+				       addrBytesAddr,
+				       dataBytesAddr, nfCePin, nfRbPin);
+	if (nfRc) {
+		printf("Nand not found\r\n");
+		return false;
+	} else {
+		printf("NF\tNb Blocks %d\r\n",
+		       NandFlashModel_GetDeviceSizeInBlocks(pModel));
+		printf("\tBlock Size %dK\r\n",
+		       NandFlashModel_GetBlockSizeInBytes(pModel) / 1024);
+		printf("\tPage Size %d\r\n",
+		       NandFlashModel_GetPageDataSize(pModel));
+		nfBaseBlock =
+		    NF_RESERVE_SIZE /
+		    NandFlashModel_GetBlockSizeInBytes(pModel);
+	}
+	printf("NF disk will use area from %dM(B%d)\r\n",
+	       NF_RESERVE_SIZE / 1024 / 1024, nfBaseBlock);
+
+#if	0
+	/* Wait 1.2s for input */
+	printf("!! Erase the NF Disk? (y/n):");
+
+	if (WaitKey(1200, 0) == 'y') {
+		if (nfRc == 0) {
+			uint32_t block;
+			printf(" Erase from %d ... ", nfBaseBlock);
+			for (block = nfBaseBlock;
+			     block <
+			     NandFlashModel_GetDeviceSizeInBlocks(pModel);
+			     block++) {
+				RawNandFlash_EraseBlock(pRaw, block);
+			}
+			printf("OK");
+		}
+	} else {
+		printf(" No Erase ... \n");
+	}
+	printf("\r\n");
+#endif
+
+	nfManagedSize =
+	    ((NandFlashModel_GetDeviceSizeInMBytes(pModel) -
+	      NF_RESERVE_SIZE / 1024 / 1024) >
+	     NF_MANAGED_SIZE / 1024 / 1024) ? NF_MANAGED_SIZE / 1024 /
+	    1024 : (NandFlashModel_GetDeviceSizeInMBytes(pModel) -
+		    NF_RESERVE_SIZE / 1024 / 1024);
+	if (TranslatedNandFlash_Initialize
+	    (&translatedNf, 0, cmdBytesAddr, addrBytesAddr, dataBytesAddr,
+	     nfCePin, nfRbPin, nfBaseBlock,
+	     nfManagedSize * 1024 * 1024 /
+	     NandFlashModel_GetBlockSizeInBytes(pModel))) {
+		printf("Nand init error\r\n");
+		return false;
+	}
+	/* Media initialize */
+	MEDNandFlash_Initialize(&medias[DRV_NAND], &translatedNf);
+
+	return true;
+}
+
+void header(void)
+{
+	/* Output example information */
+
+#if _FS_TINY != 1
+	printf("-- FatFS Full Version with NAND Example %s --\r\n",
+	       SOFTPACK_VERSION);
+
+#else
+	printf("-- FatFS Tiny Version with NAND Example %s --\r\n",
+	       SOFTPACK_VERSION);
+	printf("(Full Version has to be launched before to pass test)\r\n");
+#endif
+	printf("-- %s\r\n", BOARD_NAME);
+	printf("-- Compiled: %s %s --\r\n", __DATE__, __TIME__);
+}
+
+int init_NAND_flash(void)
+{
+	/* Init NandFlash Disk */
+	if (!NandFlashInitialize()) {
+		printf("-F- NF Init FAIL\r\n");
+		return 0;
+	}
+	return 1;
+}
+
+int mount_disk(FATFS fs)
+{
+	FRESULT res;
+	printf("-I- Mount disk 0\r\n");
+	memset(&fs, 0, sizeof(FATFS));	// Clear file system object
+	res = f_mount(0, &fs);
+	if (res != FR_OK) {
+		printf("-F- f_mount pb\r\n");
+		return 0;
+	}
+	return 1;
+}
+
+int erase_disk(void)
+{
+	uint8_t key;
+	printf("-I- Erase the NAND to re-format disk ? (y/n)!\r\n");
+
+	/* Wait 7s for input */
+	key = WaitKey(7000, 0);
+	if ((key == 'y') || (key == 'Y')) {
+#if	defined(ALLOW_FORMAT)
+		TranslatedNandFlash_EraseAll(&translatedNf, NandEraseDATA);
+		return 1;
+#else
+		printf("Erase - Not allowed - STOPPING\r\n");
+		return 0;
+#endif
+	} else {
+		printf("Erase skipped\r\n");
+	}
+	return 1;
+}
+
+int open_dir(const char *directory)
+{
+	FRESULT res;
+	DIR dirs;
+	/* Test if the disk is formated */
+	res = f_opendir(&dirs, directory);
+	if (res == FR_OK) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int format_disk(void)
+
+{
+	FRESULT res;
+	printf("-I- Format disk 0\r\n");
+	printf("-I- Please wait a moment during formating...\r\n");
+	res = f_mkfs(0,		/* Drv */
+		     0,		/* FDISK partition */
+		     SECTOR_SIZE);	/* AllocSize */
+	printf("-I- Format disk finished !\r\n");
+	if (res != FR_OK) {
+		printf("-E- f_mkfs 0x%Xpb\r\n", res);
+		return 0;
+	}
+	return 1;
+}
+
+int create_file(FIL * FileObject, const char *filename)
+{
+	FRESULT res;
+	/* Create a new file */
+	printf("-I- Create a file : \"%s\"\r\n", filename);
+	res = f_open(FileObject, filename, FA_CREATE_ALWAYS | FA_WRITE);
+	if (res != FR_OK) {
+		printf("-E- f_open create pb: 0x%X \r\n", res);
+		return 0;
+	}
+	return 1;
+}
+
+int open_file(FIL * FileObject, const char *filename)
+{
+	FRESULT res;
+	/* Open the file */
+	printf("-I- Open file : %s\r\n", filename);
+	res = f_open(FileObject, filename, FA_OPEN_EXISTING | FA_READ);
+	if (res != FR_OK) {
+		printf("-E- f_open read pb: 0x%X\r\n", res);
+		return 0;
+	}
+	return 1;
+}
+
+int write_firmware(FIL * FileObject)
+{
+	FRESULT res;
+	UINT ByteWritten;
+	printf("-I- Write firmware\r\n");
+	res = f_write(FileObject, fw, fw_size, &ByteWritten);
+	printf("-I- ByteWritten=%d\r\n", (int)ByteWritten);
+	if (res != FR_OK) {
+		printf("-E- f_write pb: 0x%X\r\n", res);
+		return 0;
+	} else {
+		printf("-I- f_write ok: ByteWritten=%d\r\n", (int)ByteWritten);
+	}
+	return 1;
+}
+
+
+int close_file(FIL * FileObject)
+{
+	FRESULT res;
+	/* Close the file */
+	printf("-I- Close file\r\n");
+	res = f_close(FileObject);
+	if (res != FR_OK) {
+		printf("-E- f_close pb: 0x%X\r\n", res);
+		return 0;
+	}
+	return 1;
+}
+
+int verify(const char *filename, const char *original, unsigned int size)
+{
+	FRESULT	res;
+	FIL	FileObject;
+	unsigned int	BytesToRead;
+	UINT	BytesRead;
+	int	sector;
+	unsigned int	i;
+	const char *fw_ptr;
+	
+	/* Read file */
+	printf("-I- Read file [%s]\r\n", filename);
+
+	if (!open_file(&FileObject, filename)) {
+		/* Reading */
+		return 0;
+	}
+
+	BytesToRead = FileObject.fsize;
+	if (BytesToRead != fw_size) {
+		printf("-E- Unexpected file size Actual=%d ; Expected=%d\r\n",
+		       BytesToRead, fw_size);
+		return 0;
+	}
+
+	sector = 0;
+	fw_ptr = fw;
+	while (BytesToRead == 0) {
+		memset(sector_cache, 0, sizeof(sector_cache));
+		res = f_read(&FileObject, sector_cache, SECTOR_SIZE, &BytesRead);
+		if (res != FR_OK) {
+			printf("-E- f_read pb: 0x%X\r\n", res);
+			return 0;
+		}
+		for (i = 0; i < BytesRead; i++) {
+			if (sector_cache[i] != fw_ptr[i]) {
+				printf
+				    ("-E- Invalid Data [0x%02x] at sector[%d], (expected 0x%02x)\r\n",
+				     sector_cache[i], sector, fw_ptr[i]
+				    );
+				return 0;
+			}
+		}
+		sector++;
+		fw_ptr += SECTOR_SIZE;
+		BytesToRead -= BytesRead;
+	}
+	close_file(&FileObject);
+	return 1;
+}
+
+/**
+
+ *  \brief Application entry point for FATFS Nand Flash Example
+ */
+int main(void)
+{
+	FATFS fs;		// File system object
+	FIL FileObject;
+
+	/* Disable watchdog */
+	WDT_Disable(WDT);
+
+	header();
+
+#if _FS_TINY == 1
+	printf("Tiny FS not supported!\r\n");
+	while (1) ;
+#endif
+
+	while (!init_NAND_flash()) ;
+
+	while (!mount_disk(fs)) ;
+
+	if (open_dir(STR_ROOT_DIRECTORY)) {
+		/* erase NAND to re-format it ? */
+		printf("-I- The disk is formated.\r\n");
+
+		/* Display the file tree */
+		printf("-I- Root Directory :\r\n");
+		scan_files((char *)STR_ROOT_DIRECTORY);
+	} else {
+		printf("-I- The disk is not formated\r\n");
+#if	defined(ALLOW_FORMAT)
+		if (erase_disk()) {
+			format_disk();
+		}
+#else
+		printf("-I- Format not supported - HALTING\r\n");
+		return 0;
+#endif
+	}
+	if (create_file(&FileObject, FileName)) {
+		write_firmware(&FileObject);
+		close_file(&FileObject);
+	} else {
+		return 0;
+	}
+
+	verify(FileName, fw, fw_size);
+
+	return 0;
+}
