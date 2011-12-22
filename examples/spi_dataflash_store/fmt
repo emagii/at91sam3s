@@ -1,0 +1,4 @@
+#!/bin/sh
+cp	a.c	test.c
+indent	-kr -i8 test.c
+
