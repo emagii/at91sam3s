@@ -1,0 +1,6 @@
+BUS!="usb", ACTION!="add", SUBSYSTEM!=="usb_device", GOTO="kcontrol_rules_end"
+
+SYSFS{idProduct}=="002b", SYSFS{idVendor}=="15ba", MODE="664", GROUP="plugdev"
+
+LABEL="kcontrol_rules_end"
+

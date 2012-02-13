@@ -1,0 +1,486 @@
+adapter_khz [khz]
+      With an argument, change to the specified maximum jtag speed.  For
+      JTAG, 0 KHz signifies adaptive  clocking. With or without argument,
+      display current setting. (command valid any time)
+adapter_name
+      Returns the name of the currently selected adapter (driver) (command
+      valid any time)
+adapter_nsrst_assert_width [milliseconds]
+      delay after asserting SRST in ms (command valid any time)
+adapter_nsrst_delay [milliseconds]
+      delay after deasserting SRST in ms (command valid any time)
+add_help_text command_name helptext_string
+      Add new command help text; Command can be multiple tokens. (command
+      valid any time)
+add_script_search_dir
+      dir to search for config files and scripts (command valid any time)
+add_usage_text command_name usage_string
+      Add new command usage text; command can be multiple tokens. (command
+      valid any time)
+arm
+      ARM command group (command valid any time)
+  arm core_state ['arm'|'thumb']
+        display/change ARM core state
+  arm disassemble address [count ['thumb']]
+        disassemble instructions 
+  arm mcr cpnum op1 CRn op2 CRm value
+        write coprocessor register
+  arm mrc cpnum op1 CRn op2 CRm
+        read coprocessor register
+  arm reg
+        display ARM core registers
+  arm semihosting ['enable'|'disable']
+        activate support for semihosting operations
+array2mem arrayname bitwidth address count
+      convert a TCL array to memory locations and write the 8/16/32 bit
+      values
+at91sam3
+      at91sam3 flash command group (command valid any time)
+  at91sam3 gpnvm [('clr'|'set'|'show') bitnum]
+        Without arguments, shows all bits in the gpnvm register. 
+        Otherwise, clears, sets, or shows one General Purpose Non-Volatile
+        Memory (gpnvm) bit.
+  at91sam3 info
+        Print information about the current at91sam3 chipand its flash
+        configuration.
+  at91sam3 slowclk [clock_hz]
+        Display or set the slowclock frequency (default 32768 Hz).
+bp [address length ['hw']]
+      list or set hardware or software breakpoint
+command
+      core command group (introspection) (command valid any time)
+  command mode [command_name ...]
+        Returns the command modes allowed by a  command:'any', 'config', or
+        'exec'.  If no command isspecified, returns the current command
+        mode.  Returns 'unknown' if an unknown command is given. Command
+        can be multiple tokens. (command valid any time)
+  command type command_name [...]
+        Returns the type of built-in command:'native', 'simple', 'group',
+        or 'unknown'. Command can be multiple tokens. (command valid any
+        time)
+cortex_m3
+      Cortex-M3 command group
+  cortex_m3 maskisr ['auto'|'on'|'off']
+        mask cortex_m3 interrupts
+  cortex_m3 reset_config ['srst'|'sysresetreq'|'vectreset']
+        configure software reset handling (command valid any time)
+  cortex_m3 vector_catch ['all'|'none'|('bus_err'|'chk_err'|...)*]
+        configure hardware vectors to trigger debug entry
+dap
+      DAP command group
+  dap apid [ap_num]
+        return ID register from AP (default currently selected AP)
+  dap apsel [ap_num]
+        Set the currently selected AP (default 0) and display the result
+  dap baseaddr [ap_num]
+        return debug base address from MEM-AP (default currently selected
+        AP)
+  dap info [ap_num]
+        display ROM table for MEM-AP (default currently selected AP)
+  dap memaccess [cycles]
+        set/get number of extra tck for MEM-AP memory bus access [0-255]
+debug_level number
+      Sets the verbosity level of debugging output. 0 shows errors only; 1
+      adds warnings; 2 (default) adds other info; 3 adds debugging.
+      (command valid any time)
+drscan tap_name [num_bits value]* ['-endstate' state_name]
+      Execute Data Register (DR) scan for one TAP.  Other TAPs must be in
+      BYPASS mode.
+dump_image filename address size
+echo [-n] string
+      Logs a message at "user" priority. Output message to stdout. Option
+      "-n" suppresses trailing newline (command valid any time)
+exit
+      exit telnet session
+fast_load
+      loads active fast load image to current target - mainly for profiling
+      purposes
+fast_load_image filename address ['bin'|'ihex'|'elf'|'s19'] [min_address [max_length]]
+      Load image into server memory for later use by fast_load; primarily
+      for profiling (command valid any time)
+find <file>
+      print full path to file according to OpenOCD search rules (command
+      valid any time)
+flash
+      NOR flash command group (command valid any time)
+  flash bank bank_id driver_name base_address size_bytes chip_width_bytes
+            bus_width_bytes target [driver_options ...]
+        Define a new bank with the given name, using the specified NOR
+        flash driver. (configuration command)
+  flash banks
+        Display table with information about flash banks. (command valid
+        any time)
+  flash erase_address ['pad'] ['unlock'] address length
+        Erase flash sectors starting at address and continuing for length
+        bytes.  If 'pad' is specified, data outside that range may also be
+        erased: the start address may be decreased, and length increased,
+        so that all of the first and last sectors are erased. If 'unlock'
+        is specified, then the flash is unprotected before erasing.
+  flash erase_check bank_id
+        Check erase state of all blocks in a flash bank.
+  flash erase_sector bank_id first_sector_num last_sector_num
+        Erase a range of sectors in a flash bank.
+  flash fillb address value n
+        Fill n bytes with 8-bit value, starting at word address.  (No
+        autoerase.)
+  flash fillh address value n
+        Fill n halfwords with 16-bit value, starting at word address.  (No
+        autoerase.)
+  flash fillw address value n
+        Fill n words with 32-bit value, starting at word address.  (No
+        autoerase.)
+  flash info bank_id
+        Print information about a flash bank.
+  flash init
+        Initialize flash devices. (configuration command)
+  flash list
+        Returns a list of details about the flash banks. (command valid any
+        time)
+  flash probe bank_id
+        Identify a flash bank.
+  flash protect bank_id first_sector [last_sector|'last'] ('on'|'off')
+        Turn protection on or off for a range of sectors in a given flash
+        bank.
+  flash write_bank bank_id filename offset
+        Write binary data from file to flash bank, starting at specified
+        byte offset from the beginning of the bank.
+  flash write_image [erase] [unlock] filename [offset [file_type]]
+        Write an image to flash.  Optionally first unprotect and/or erase
+        the region to be used.  Allow optional offset from beginning of
+        bank (defaults to zero)
+flush_count
+      Returns the number of times the JTAG queue has been flushed.
+ft2232_device_desc description_string
+      set the USB device description of the FTDI FT2232 device
+      (configuration command)
+ft2232_latency value
+      set the FT2232 latency timer to a new value (configuration command)
+ft2232_layout layout_name
+      set the layout of the FT2232 GPIO signals used to control
+      output-enables and reset signals (configuration command)
+ft2232_serial serial_string
+      set the serial number of the FTDI FT2232 device (configuration
+      command)
+ft2232_vid_pid (vid pid)* 
+      the vendor ID and product ID of the FTDI FT2232 device (configuration
+      command)
+gdb_breakpoint_override ('hard'|'soft'|'disable')
+      Display or specify type of breakpoint to be used by gdb 'break'
+      commands. (command valid any time)
+gdb_flash_program ('enable'|'disable')
+      enable or disable flash program (configuration command)
+gdb_memory_map ('enable'|'disable')
+      enable or disable memory map (configuration command)
+gdb_port [port_num]
+      Normally gdb listens to a TCP/IP port. Each subsequent GDB server
+      listens for the next port number after the base port number
+      specified. No arguments reports GDB port. "pipe" means listen to
+      stdin output to stdout, an integer is base port number, "disable"
+      disables port. Any other string is are interpreted as named pipe to
+      listen to. Output pipe is the same name as input pipe, but with 'o'
+      appended. (command valid any time)
+gdb_report_data_abort ('enable'|'disable')
+      enable or disable reporting data aborts (configuration command)
+gdb_sync
+      next stepi will return immediately allowing GDB to fetch register
+      state without affecting target state (command valid any time)
+halt [milliseconds]
+      request target to halt, then wait up to the specifiednumber of
+      milliseconds (default 5) for it to complete
+help [command_name]
+      Show full command help; command can be multiple tokens. (command
+      valid any time)
+init
+      Initializes configured targets and servers.  Changes command mode
+      from CONFIG to EXEC.  Unless 'noinit' is called, this command is
+      called automatically at the end of startup. (command valid any time)
+interface driver_name
+      Select a debug adapter interface (driver) (configuration command)
+interface_list
+      List all built-in debug adapter interfaces (drivers) (command valid
+      any time)
+interface_transports transport ... 
+      Declare transports the interface supports. (configuration command)
+irscan [tap_name instruction]* ['-endstate' state_name]
+      Execute Instruction Register (DR) scan.  The specified opcodes are
+      put into each TAP's IR, and other TAPs are put in BYPASS.
+jtag
+      perform jtag tap actions (command valid any time)
+  jtag arp_init
+        Validates JTAG scan chain against the list of declared TAPs using
+        just the four standard JTAG signals. (command valid any time)
+  jtag arp_init-reset
+        Uses TRST and SRST to try resetting everything on the JTAG scan
+        chain, then performs 'jtag arp_init'. (command valid any time)
+  jtag cget tap_name '-event' event_name
+        Return any Tcl handler for the specified TAP event.
+  jtag configure tap_name '-event' event_name handler
+        Provide a Tcl handler for the specified TAP event.
+  jtag drscan tap_name [num_bits value]* ['-endstate' state_name]
+        Execute Data Register (DR) scan for one TAP.  Other TAPs must be in
+        BYPASS mode.
+  jtag flush_count
+        Returns the number of times the JTAG queue has been flushed.
+  jtag init
+        initialize jtag scan chain (command valid any time)
+  jtag names
+        Returns list of all JTAG tap names. (command valid any time)
+  jtag newtap basename tap_type '-irlen' count ['-enable'|'-disable'] ['-expected_id'
+            number] ['-ignore-version'] ['-ircapture' number] ['-mask'
+            number] 
+        Create a new TAP instance named basename.tap_type, and appends it
+        to the scan chain. (configuration command)
+  jtag pathmove start_state state1 [state2 [state3 ...]]
+        Move JTAG state machine from current state (start_state) to state1,
+        then state2, state3, etc.
+  jtag tapdisable tap_name
+        Try to disable the specified TAP using the 'tap-disable' TAP event.
+  jtag tapenable tap_name
+        Try to enable the specified TAP using the 'tap-enable' TAP event.
+  jtag tapisenabled tap_name
+        Returns a Tcl boolean (0/1) indicating whether the TAP is enabled
+        (1) or not (0).
+jtag_flush_queue_sleep [sleep in ms]
+      For debug purposes(simulate long delays of interface) to test
+      performance or change in behavior. Default 0ms. (command valid any
+      time)
+jtag_ntrst_assert_width [milliseconds]
+      delay after asserting trst in ms (command valid any time)
+jtag_ntrst_delay [milliseconds]
+      delay after deasserting trst in ms (command valid any time)
+jtag_rclk [fallback_speed_khz]
+      With an argument, change to to use adaptive clocking if possible;
+      else to use the fallback speed.  With or without argument, display
+      current setting. (command valid any time)
+jtag_reset trst_active srst_active
+      Set reset line values.  Value '1' is active, value '0' is inactive.
+load_image filename address ['bin'|'ihex'|'elf'|'s19'] [min_address] [max_length]
+log_output file_name
+      redirect logging to a file (default: stderr) (command valid any time)
+mdb ['phys'] address [count]
+      display memory bytes
+mdh ['phys'] address [count]
+      display memory half-words
+mdw ['phys'] address [count]
+      display memory words
+measure_clk
+      Runs a test to measure the JTAG clk. Useful with RCLK / RTCK.
+      (command valid any time)
+mem2array arrayname bitwidth address count
+      read 8/16/32 bit memory and return as a TCL array for script
+      processing
+mflash
+      mflash command group (command valid any time)
+  mflash bank soc_type base_addr pin_id target
+        configure a mflash device bank (configuration command)
+  mflash init
+        initialize mflash devices (configuration command)
+ms       Returns ever increasing milliseconds. Used to calculuate differences
+      in time. (command valid any time)
+mwb ['phys'] address value [count]
+      write memory byte
+mwh ['phys'] address value [count]
+      write memory half-word
+mww ['phys'] address value [count]
+      write memory word
+nand
+      NAND flash command group (command valid any time)
+  nand device bank_id driver target [driver_options ...]
+        defines a new NAND bank (configuration command)
+  nand drivers
+        lists available NAND drivers (command valid any time)
+  nand init
+        initialize NAND devices (configuration command)
+noinit
+      Prevent 'init' from being called at startup. (configuration command)
+pathmove start_state state1 [state2 [state3 ...]]
+      Move JTAG state machine from current state (start_state) to state1,
+      then state2, state3, etc.
+pld
+      programmable logic device commands (command valid any time)
+  pld device driver_name [driver_args ... ]
+        configure a PLD device (configuration command)
+  pld init
+        initialize PLD devices (configuration command)
+poll ['on'|'off']
+      poll target state; or reconfigure background polling
+power_restore
+      Overridable procedure run when power restore is detected. Runs 'reset
+      init' by default. (command valid any time)
+profile
+      profiling samples the CPU PC
+rbp address
+      remove breakpoint
+reg [(register_name|register_number) [value]]
+      display or set a register; with no arguments, displays all registers
+      and their values
+reset [run|halt|init]
+      Reset all targets into the specified mode.Default reset mode is run,
+      if not given.
+reset_config [none|trst_only|srst_only|trst_and_srst]
+          [srst_pulls_trst|trst_pulls_srst|combined|separate]
+          [srst_gates_jtag|srst_nogate] [trst_push_pull|trst_open_drain]
+          [srst_push_pull|srst_open_drain]
+      configure adapter reset behavior (command valid any time)
+reset_nag ['enable'|'disable']
+      Nag after each reset about options that could have been enabled to
+      improve performance.  (command valid any time)
+resume [address]
+      resume target execution from current PC or address
+runtest num_cycles
+      Move to Run-Test/Idle, and issue TCK for num_cycles.
+rwp address
+      remove watchpoint
+sam3.cpu
+      target command group (command valid any time)
+  sam3.cpu arm
+        ARM command group (command valid any time)
+  sam3.cpu arp_examine
+        used internally for reset processing
+  sam3.cpu arp_halt
+        used internally for reset processing
+  sam3.cpu arp_halt_gdb
+        used internally for reset processing to halt GDB
+  sam3.cpu arp_poll
+        used internally for reset processing
+  sam3.cpu arp_reset
+        used internally for reset processing
+  sam3.cpu arp_waitstate
+        used internally for reset processing
+  sam3.cpu array2mem arrayname bitwidth address count
+        Writes Tcl array of 8/16/32 bit numbers to target memory
+  sam3.cpu cget target_attribute
+        returns the specified target attribute (command valid any time)
+  sam3.cpu configure [target_attribute ...]
+        configure a new target for use (configuration command)
+  sam3.cpu cortex_m3
+        Cortex-M3 command group
+  sam3.cpu curstate
+        displays the current state of this target
+  sam3.cpu dap
+        DAP command group
+  sam3.cpu eventlist
+        displays a table of events defined for this target
+  sam3.cpu invoke-event event_name
+        invoke handler for specified event
+  sam3.cpu mdb address [count]
+        Display target memory as 8-bit bytes
+  sam3.cpu mdh address [count]
+        Display target memory as 16-bit half-words
+  sam3.cpu mdw address [count]
+        Display target memory as 32-bit words
+  sam3.cpu mem2array arrayname bitwidth address count
+        Loads Tcl array of 8/16/32 bit numbers from target memory
+  sam3.cpu mwb address data [count]
+        Write byte(s) to target memory
+  sam3.cpu mwh address data [count]
+        Write 16-bit half-word(s) to target memory
+  sam3.cpu mww address data [count]
+        Write 32-bit word(s) to target memory
+scan_chain
+      print current scan chain configuration (command valid any time)
+script <file>
+      filename of OpenOCD script (tcl) to run (command valid any time)
+shutdown
+      shut the server down (command valid any time)
+sleep milliseconds ['busy']
+      Sleep for specified number of milliseconds.  "busy" will busy wait
+      instead (avoid this). (command valid any time)
+soft_reset_halt
+      halt the target and do a soft reset
+srst_deasserted
+      Overridable procedure run when srst deassert is detected. Runs 'reset
+      init' by default. (command valid any time)
+stacktrace
+      returns the stacktrace as a list of triples: proc, file, line.The
+      stack trace is reset when a new stack trace is being built after a
+      new failure has occurred. (command valid any time)
+step [address]
+      step one instruction from current PC or address
+svf svf [-tap device.tap] <file> [quiet] [nil] [progress]
+      Runs a SVF file.
+target
+      configure target (configuration command)
+  target count
+        Returns the number of targets as an integer (DEPRECATED) (command
+        valid any time)
+  target create name type '-chain-position' name [options ...]
+        Creates and selects a new target (command valid any time)
+  target current
+        Returns the currently selected target (command valid any time)
+  target init
+        initialize targets (configuration command)
+  target names
+        Returns the names of all targets as a list of strings (command
+        valid any time)
+  target number number
+        Returns the name of the numbered target (DEPRECATED) (command valid
+        any time)
+  target smp targetname1 targetname2 ...
+        gather several target in a smp list (command valid any time)
+  target types
+        Returns the available target types as a list of strings (command
+        valid any time)
+target_request
+      target request command group (command valid any time)
+  target_request debugmsgs ['enable'|'charmsg'|'disable']
+        display and/or modify reception of debug messages from target
+targets [target]
+      change current default target (one parameter) or prints table of all
+      targets (no parameters) (command valid any time)
+tcl_port [port_num]
+      Specify port on which to listen for incoming Tcl syntax.  Read help
+      on 'gdb_port'. (configuration command)
+telnet_port [port_num]
+      Specify port on which to listen for incoming telnet connections. 
+      Read help on 'gdb_port'. (command valid any time)
+test_image filename [offset [type]]
+tms_sequence ['short'|'long']
+      Display or change what style TMS sequences to use for JTAG state
+      transitions:  short (default) or long.  Only for working around JTAG
+      bugs. (command valid any time)
+trace
+      trace command group
+  trace history ['clear'|size]
+        display trace history, clear history or set size
+  trace point ['clear'|address]
+        display trace points, clear list of trace points, or add new
+        tracepoint at address
+transport
+      Transport command group (command valid any time)
+  transport init
+        Initialize this session's transport (command valid any time)
+  transport list
+        list all built-in transports (command valid any time)
+  transport select [transport_name]
+        Select this session's transport (command valid any time)
+usage [command_name]
+      Show basic command usage; command can be multiple tokens. (command
+      valid any time)
+verify_image filename [offset [type]]
+verify_ircapture ['enable'|'disable']
+      Display or assign flag controlling whether to verify values captured
+      during Capture-IR. (command valid any time)
+verify_jtag ['enable'|'disable']
+      Display or assign flag controlling whether to verify values captured
+      during IR and DR scans. (command valid any time)
+version
+      show program version (command valid any time)
+virt2phys virtual_address
+      translate a virtual address into a physical address (command valid
+      any time)
+wait_halt [milliseconds]
+      wait up to the specified number of milliseconds (default 5) for a
+      previously requested halt
+wait_srst_deassert ms
+      Wait for an SRST deassert. Useful for cases where you need something
+      to happen within ms of an srst deassert. Timeout in ms  (command
+      valid any time)
+wp [address length [('r'|'w'|'a') value [mask]]]
+      list (no params) or create watchpoints
+xsvf (tapname|'plain') filename ['virt2'] ['quiet']
+      Runs a XSVF file.  If 'virt2' is given, xruntest counts are
+      interpreted as TCK cycles rather than as microseconds.  Without the
+      'quiet' option, all comments, retries, and mismatches will be
+      reported.
+
