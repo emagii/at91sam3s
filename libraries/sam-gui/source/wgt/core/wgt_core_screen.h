@@ -30,8 +30,8 @@
 #ifndef _SAMGUI_WIDGET_CORE_SCREEN_
 #define _SAMGUI_WIDGET_CORE_SCREEN_
 
-#include "source\wgt\core\wgt_core_widget.h"
-#include "source\wgt\core\wgt_core_message.h"
+#include "source/wgt/core/wgt_core_widget.h"
+#include "source/wgt/core/wgt_core_message.h"
 
 /**
  * \addtogroup SAMGUI
