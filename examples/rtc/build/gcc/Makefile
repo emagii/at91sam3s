@@ -38,7 +38,8 @@ CHIP  = sam3s4
 BOARD = sam3s_ek
 
 # Defines which are the available memory targets for the SAM3S-EK board.
-MEMORIES = sram flash
+# MEMORIES = sram flash
+MEMORIES = flash
 
 # Trace level used for compilation
 # (can be overriden by adding TRACE_LEVEL=#number to the command-line)
